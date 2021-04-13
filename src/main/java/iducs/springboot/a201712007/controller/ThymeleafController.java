@@ -1,11 +1,15 @@
 package iducs.springboot.a201712007.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
+import java.util.Map;
 
 @Controller
 public class ThymeleafController {
@@ -57,14 +61,21 @@ public class ThymeleafController {
      * @return view
      */
     @PostMapping("sign-in")
-    public String signIn(HttpServletRequest req) {
+    public String signIn(HttpServletRequest req, Model model) {
         HttpSession session= req.getSession();
 
         String email = req.getParameter("email");
 
-        session.setAttribute("email", email);
+        if(email.equals("ezuoo")) {
+            session.setAttribute("email", email);
+            return "main/index";
+        } else {
+            model.addAttribute("msg", "잘못된 정보를 입력하셨습니다.");
+            return "errors/message";
+        }
 
-        return "main/index";
+
+
     }
 
     /**

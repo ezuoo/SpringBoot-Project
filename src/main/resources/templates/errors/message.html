@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: egyou@office.induk.ac.kr
-  Date: 2020-10-05
-  Time: 오전 9:02
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.orf">
 <head>
 
     <meta charset="utf-8">
@@ -15,18 +8,17 @@
     <meta name="author" content="">
 
     <title>error page</title>
-
-    <jsp:include page="../main/index-head.jsp" />
+    <th:block th:include="main/index-head"></th:block>
 
 </head>
 
 <body>
 
-<!-- Navigation -->
-<jsp:include page="../main/index-nav.jsp" />
+<!-- Navigation  index-nav.html  -->
+<th:block th:include="main/index-nav"></th:block>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('../img/about-bg.jpg')">
+<header class="masthead" th:style="'background-image: url(../img/about-bg.jpg)'">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -44,15 +36,16 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto text-center">
-            <h2 class="text-center">메시지 : ${message} </h2>
-            <a href="../main/index.jsp" class="btn btn-link"><h4>홈으로</h4></a>
+            <h2 class="text-center">메시지 : <th:block th:text="${msg}"></th:block> </h2>
+
+            <a href="/" class="btn btn-link"><h4>홈으로</h4></a>
         </div>
     </div>
 </div>
 <hr>
 
 <!-- Footer -->
-<%@ include file="../main/index-footer.html" %>
+<th:block th:include="main/index-footer"></th:block>
 
 </body>
 

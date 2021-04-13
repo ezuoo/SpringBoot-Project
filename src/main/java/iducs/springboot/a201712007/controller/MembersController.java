@@ -54,7 +54,7 @@ public class MembersController {
      * @return
      */
     @PutMapping("/{id}")
-    public String update() {
+    public String update(@PathVariable String id) {
         return null;
     }
 
@@ -63,7 +63,7 @@ public class MembersController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public String delete() {
+    public String delete(@PathVariable String id) {
         return null;
     }
 
