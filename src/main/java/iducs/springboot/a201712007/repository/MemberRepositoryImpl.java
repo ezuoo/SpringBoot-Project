@@ -6,8 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * DB 작업 영역
+ */
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
+
+
     @Override
     public int create(Member member) {
         return 0;
