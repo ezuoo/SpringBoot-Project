@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
 
+//    private JdbcT
 
     @Override
     public int create(Member member) {

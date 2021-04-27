@@ -16,9 +16,9 @@ public class MembersController {
 
     private MemberService memberService;
 
-    @Autowired // Spring Framework 가 주입함.
+    @Autowired // 약한 의존성 주입 ( 프레임워크에게 책임전가 )
     public void MemberController(MemberService memberService) {
-        this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
+        this.memberService = memberService;
     }
     /**
      * Get Members

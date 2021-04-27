@@ -4,6 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Member {
     private int id;
