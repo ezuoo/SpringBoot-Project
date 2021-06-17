@@ -1,10 +1,10 @@
 package iducs.springboot.a201712007.service;
-
 import iducs.springboot.a201712007.domain.Member;
-import iducs.springboot.a201712007.repository.MemberRepository;
+import iducs.springboot.a201712007.mapper.MemberMapper;
+import iducs.springboot.a201712007.mapper.TestMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -14,53 +14,63 @@ import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    private MemberRepository memberRepository;
-
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) { // MemberRepository 유형의 등록된 객체를 Spring Framework이 자동 주입
-        this.memberRepository = memberRepository;
-    }
+    MemberMapper memberMapper;
 
 
+    /**
+     * check member when login
+     * @param member
+     * @return member object
+     */
     @Override
-    public Member getMember(long id) {
-        return null;
+    public Member checkMember(Member member) {
+        return memberMapper.checkMember(member);
     }
 
+    /**
+     * validate member
+     * @param id
+     * @return Whether the value exists.
+     */
     @Override
-    public Member getMemberByEmail(String email) {
-        return null;
+    public boolean validateMember(String id) {
+        return memberMapper.validateMemberById(id) >= 1 ? false : true;
     }
 
+    /**
+     * register member
+     * @param member
+     * @return member count
+     */
     @Override
-    public List<Member> getMembers() {
-        System.out.println("Service : getMembers method");
-        return null;
+    public int registerMember(Member member) {
+        return memberMapper.registerMember(member);
     }
 
+    /**
+     * get member
+     * @param no
+     * @return member
+     */
     @Override
-    public List<Member> getMembersByPage(int index, int size) {
-        return null;
-    }
+    public Member getMember(int no) { return memberMapper.getMemberByNo(no); }
 
-    @Override
-    public int postMember(Member member) {
-        System.err.println("Service : postMember method");
-        System.out.println("E-mail : " + member.getEmail());
-        System.out.println("Password : " + member.getPw());
-        System.out.println("Name : " + member.getName());
-        System.out.println("P-H : " + member.getPhone());
-        System.out.println("Address : " + member.getAddress());
-        return 0;
-    }
 
+    /**
+     * update member
+     * @param member
+     * @return 1 or 0
+     */
     @Override
-    public int putMember(Member member) {
-        return 0;
-    }
+    public int updateMember(Member member) { return memberMapper.updateMemberByNo(member); }
 
+    /**
+     * delete member
+     * @param no
+     * @return 1 or 0
+     */
     @Override
-    public int deleteMember(Member member) {
-        return 0;
-    }
+    public int deleteMemberByNo(int no) { return memberMapper.deleteMemberByNo(no); }
+
 }

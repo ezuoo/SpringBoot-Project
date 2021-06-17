@@ -1,40 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <th:block th:if="${session.email == null}">
+            <th:block th:if="${member == null}">
                 ezuoo's blog
             </th:block>
-            <th:block th:if="${session.email != null}">
-                <th:block th:text="${session.email}"></th:block>
+            <th:block th:if="${member != null}">
+                <th:block th:text="${member.name}"></th:block>
             </th:block>
         </a>
+
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blogs</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Blogs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <th:block th:if="${member != null}">
+                      <a class="dropdown-item" href="/blog?a=c">Create</a>
+                    </th:block>
+                      <a class="dropdown-item" href="/blog?a=r">List</a>
+                    </div>
                 </li>
 
-                <th:block th:if="${session.email == null}">
+                <th:block th:if="${member == null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/sign-up">Sign Up</a>
+                        <a class="nav-link" href="/member?a=c">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/sign-in">Sign In</a>
+                        <a class="nav-link" href="/member?a=i">Sign In</a>
                     </li>
                 </th:block>
-                <th:block th:if="${session.email != null}">
+
+                <th:block th:if="${member != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/members">Detail</a>
+                        <a class="nav-link" th:href="@{'/member/' + ${member.no}}">Detail</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Sign Out</a>
+                        <a class="nav-link" href="/member?a=o">Sign Out</a>
                     </li>
                 </th:block>
             </ul>

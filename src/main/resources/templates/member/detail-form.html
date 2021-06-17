@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.orf">
+<head>
+
+    <th:block th:include="/main/index-head"></th:block>
+    <title>Kare Member Detail : Clean Blog - Start Bootstrap Theme</title>
+
+    <script type="text/javascript">
+        const onHandleSave = (no) => {
+            const xhr = new XMLHttpRequest();
+
+            let data = {};
+            data.pw = document.getElementById("pw").value;
+            data.name = document.getElementById("name").value;
+            let json = JSON.stringify(data);
+            xhr.open("PATCH", "/member/" + no, true);
+            xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+            xhr.onload = function () {
+                if (xhr.status == "200") {
+                    window.location.href = '/member/' + no;
+                } else {
+                    alert("error");
+                    window.location.href = '/member/' + no;
+                }
+            }
+            xhr.send(json);
+        }
+    </script>
+
+</head>
+
+<body>
+     <!-- Navigation -->
+    <th:block th:include="/main/index-nav"></th:block>
+
+    <!-- Page Header -->
+    <header class="masthead" th:style="'background-image: url(../img/contact-bg.jpg)'">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1><th:block th:text="${member.name}"></th:block> Detail</h1>
+                        <span class="subheading">Your Detail Information</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-10 mx-auto">
+
+                    <!-- id -->
+                    <div class="mb-5">
+                        <label for="id">ID <span class="text-muted"></span></label>
+                        <input type="text" class="form-control" name="id" th:value="${member.id}" id="id" readOnly>
+                    </div>
+
+                    <!-- pw -->
+                    <div class="mb-3">
+                        <label for="pw">Password</label>
+                        <input type="password" class="form-control" name="pw" id="pw" placeholder="passwd" th:value="${member.pw}" required="">
+                    </div>
+
+                    <!-- name -->
+                    <div class="mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" th:value="${member.name}" id="name" required="">
+                    </div>
+
+                    <hr class="mb-4">
+                    <div class="text-center">
+                        <a href="javascript:history.back();" class="btn btn-primary">이전으로</a>
+
+                        <button class="btn btn-primary" th:onclick="'javascript:onHandleSave(' + ${member.no} +')'">Update</button>
+
+                        <a href="/member?a=d" class="btn btn-primary text-center">Unregister</a>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+     <!-- Footer -->
+    <th:block th:include="/main/index-footer"></th:block>
+</body>
+</html>
+
+
+

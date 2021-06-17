@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.orf">
+<head>
+
+  <th:block th:include="/main/index-head"></th:block>
+  <title>Kare Blog List : Clean Blog - Start Bootstrap Theme</title>
+
+
+  <script type="text/javascript">
+    const onHandleDelete = (no) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open("DELETE", "/blog/" + no, true);
+      xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+      xhr.onload = function () {
+        if (xhr.readyState == 4 && xhr.status == "200") {
+          window.location.href = '/blog?a=r';
+        } else {
+          alert("error")
+        }
+      }
+      xhr.send();
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <th:block th:include="/main/index-nav"></th:block>
+
+  <!-- Page Header -->
+  <header class="masthead" th:style="'background-image: url(../img/post-bg.jpg)'">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Blog Datail</h1>
+            <span class="subheading">블로그 상세 보기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+          <h2 class="section-heading" th:text="${blog.title}"></h2>
+		  <p th:text="${blog.content}"></p>
+
+          <img class="img-fluid" th:src="'../files/' + ${blog.file}" alt="">
+
+          <br/>
+          <span class="post-meta" th:text="'Written By ' + ${blog.member_id}"></span>
+          <p class="post-meta" th:text="'Written On ' + ${blog.date}"></p>
+
+          <div class="clearfix text-center" style="margin-top: 7rem;">
+              <a href="/blog?a=r" class="btn btn-primary">목록으로</a>
+              <a class="btn btn-primary" href="/blog?a=u">수정</a>
+              <button class="btn btn-primary" th:onclick="'javascript:onHandleDelete(' + ${blog.no} +')'">삭제</button>
+	      </div>
+        </div>
+      </div>
+      
+    </div>
+  </article>
+        
+  <hr>
+
+  <!-- Footer -->
+  <th:block th:include="/main/index-footer"></th:block>
+</body>
+</html>

@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.orf">
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>Kare Blog - main index</title>
-    <th:block th:include="main/index-head"></th:block>
+    <th:block th:include="/main/index-head"></th:block>
 </head>
 
 <body>
 
 <!-- Navigation  index-nav.html  -->
-<th:block th:include="main/index-nav"></th:block>
+<th:block th:include="/main/index-nav"></th:block>
 
 <!-- Page Header -->
 <header class="masthead" th:style="'background-image: url(../img/home-bg2.jpg)'">
@@ -32,7 +26,7 @@
 </header>
 
 <!-- Main Content -->
-<h2 class="text-center">MVC Model 2 웹 애플리케이션 개발 절차</h2>
+<h2 class="text-center">Spring Boot + Spring Data JDBC 개발</h2>
 <hr/>
 <div class="container">
     <div class="row">
@@ -51,7 +45,7 @@
                     Model - DTO(Data Transfer Object) 정의
                 </h3>
                 <span class="meta">
-                    POJO(Plain Old Java Object), Java
+                    POJO(Plain Old Java Object), Java, Lombok (@EqualsAndHashCode, @Getter, @Setter, @ToString, @AllArgsConstructor)
                 </span>
             </div>
             <hr>
@@ -60,7 +54,7 @@
                     Service 정의 (소규모인 경우 Controller가 수행)
                 </h3>
                 <span class="meta">
-                    Business Logic,  Java
+                    @Service - Business Logic, Java
                 </span>
             </div>
             <hr>
@@ -69,7 +63,7 @@
                     DAO(Data Access Object) 정의
                 </h3>
                 <span class="meta">
-                    Data Access Layer, JDBC,  SQL
+                    @Repository - Data Access Layer, JDBC, SQL
                 </span>
             </div>
             <hr>
@@ -78,7 +72,7 @@
                     Controller 정의
                 </h3>
                 <span class="meta">
-                    Servlet
+                    @Controller, @RestController, @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
                 </span>
             </div>
             <hr>
@@ -87,14 +81,13 @@
                     View 생성
                 </h3>
                 <span class="meta">
-                    JSP
+                    Thymeleaf, JSP
                 </span>
             </div>
             <hr>
         </div>
     </div>
 </div>
-
 <hr>
 
 <!-- Footer -->

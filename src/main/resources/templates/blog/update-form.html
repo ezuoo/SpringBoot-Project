@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.orf">
+<head>
+
+  <th:block th:include="/main/index-head"></th:block>
+  <title>Kare Blog List : Clean Blog - Start Bootstrap Theme</title>
+
+
+  <script type="text/javascript">
+    const onHandleSave = (no) => {
+      const xhr = new XMLHttpRequest();
+
+      let data = {};
+      data.title = document.getElementById("title").value;
+      data.content = document.getElementById("content").value;
+      let json = JSON.stringify(data);
+
+      xhr.open("PATCH", "/blog/" + no, true);
+      xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+      xhr.onload = function () {
+        if (xhr.readyState == 4 && xhr.status == "200") {
+          window.location.href = '/blog/' + no;
+        } else {
+          alert("error")
+        }
+      }
+      xhr.send(json);
+
+    }
+  </script>
+</head>
+<body>
+
+   <!-- Navigation -->
+  <th:block th:include="/main/index-nav"></th:block>
+
+   <!-- Page Header -->
+  <header class="masthead" th:style="'background-image: url(../img/contact-bg.jpg)'">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Update a Blog </h1>
+            <span class="subheading">블로그에 글을 수정하십시요</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+
+          <!-- title -->
+          <div class="control-group" style="border: 0.03rem solid #d9d9d9; border-radius: 8px; margin-bottom: 1rem;">
+            <div class="form-group floating-label-form-group controls">
+              <label>Title</label>
+              <input type="text" class="form-control" name="title" th:value="${blog.title}" placeholder="Title" id="title" required data-validation-required-message="Please enter title.">
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="control-group" style="border: 0.03rem solid #d9d9d9; border-radius: 8px;">
+            <div class="form-group floating-label-form-group controls">
+              <label>Content</label>
+              <textarea rows="5" class="form-control" name="content" placeholder="Content" id="content" required data-validation-required-message="Please enter content."><th:block th:text="${blog.content}"></th:block></textarea>
+
+<!--              <p class="help-block text-danger">Content</p>-->
+            </div>
+          </div>
+
+          <br>
+
+          <div align="center">
+              <div class="form-group">
+                <a href="javascript:history.back();" class="btn btn-primary">이전으로</a>
+                <button th:onclick="'javascript:onHandleSave(' + ${blog.no} +')'" class="btn btn-primary" id="sendMessageButton">저장</button>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <hr />
+    <br />
+
+   <!-- Footer -->
+    <th:block th:include="/main/index-footer"></th:block>
+
+   <!-- Contact Form JavaScript -->
+<!--    <script src="../js/jqBootstrapValidation.js"></script>-->
+<!--    <script src="../js/contact_me.js"></script>-->
+<!--	<script src="https://code.jquery.com/jquery.min.js"></script>-->
+<!--	<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>-->
+<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>-->
+
+</body>
+
+</html>

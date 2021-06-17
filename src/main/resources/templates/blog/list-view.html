@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.orf">
-<html>
-
 <head>
 
-  <th:block th:include="main/index-head"></th:block>
-  <title>Kare Blog List : Clean Blog - Start Bootstrap Theme</title>
+    <th:block th:include="/main/index-head"></th:block>
+    <title>Kare Blog List : Clean Blog - Start Bootstrap Theme</title>
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <th:block th:include="main/index-nav"></th:block>
+  <th:block th:include="/main/index-nav"></th:block>
 
   <!-- Page Header -->
   <header class="masthead" th:style="'background-image: url(../img/home-bg.jpg)'">
@@ -31,35 +29,33 @@
 
   <!-- Main Content -->
   <div class="container">
-    </div>
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-<!--        <c:if test="${sessionScope.login != null}">-->
-<!--        <div class="text-right">-->
-<!--          <a class="btn btn-primary float-right" href="./create-form.jsp">New Post</a>-->
-<!--        </div>-->
-<!--        </c:if>-->
-<!--      	<c:forEach items="${requestScope.bloglist }" var="blog">      	-->
-<!--        <div class="post-preview">-->
-<!--          <a href="read.do?id=${blog.id }">-->
-<!--            <h2 class="post-title">-->
-<!--              ${blog.title }-->
-<!--            </h2>-->
-<!--            <h3 class="post-subtitle">-->
-<!--              ${blog.content }-->
-<!--            </h3>-->
-<!--          </a>-->
-<!--          <p class="post-meta">Posted by-->
-<!--            <a href="#">${blog.blogger }</a>-->
-<!--            on ${blog.regDateTime }</p>-->
-<!--        </div>-->
-<!--        <hr>-->
-<!--        </c:forEach>-->
-        <!-- Pager
+        <th:block th:if="${member != null}">
+          <div class="text-right">
+            <a class="btn btn-primary float-right" href="/blog?a=c">New Post</a>
+          </div>
+        </th:block>
+
+
+        <div class="post-preview" th:style="'margin-top: 6rem;'" th:each="blog : ${blogs}">
+            <a th:href="@{'/blog/' + ${blog.no}}">
+                <h2 class="post-title" th:text="${blog.title}"></h2>
+                <h3 class="post-subtitle" th:text="${blog.content}"></h3>
+            </a>
+            <br/>
+            <span class="post-meta" th:text="'Written By ' + ${blog.member_id}"></span>
+            <p class="post-meta" th:text="'Written On ' + ${blog.date}"></p>
+
+          <hr>
+        </div>
+
+
+        <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
-        -->
+
       </div>
     </div>
   </div>
@@ -67,15 +63,6 @@
   <hr>
 
   <!-- Footer -->
-  <th:block th:include="main/index-footer"></th:block>
-  
-  <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="../js/clean-blog.min.js"></script>
-
+  <th:block th:include="/main/index-footer"></th:block>
 </body>
-
 </html>

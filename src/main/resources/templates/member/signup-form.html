@@ -2,76 +2,68 @@
 <html xmlns:th="https://thymeleaf.orf">
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Kare Blog - Start Bootstrap Theme</title>
-    <th:block th:include="main/index-head"></th:block>
+    <th:block th:include="/main/index-head"></th:block>
+    <title>Kare Blog Create : Clean Blog - Start Bootstrap Theme</title>
 
 </head>
 
 <body>
+    <!-- Navigation -->
+    <th:block th:include="/main/index-nav"></th:block>
 
-<!-- Navigation -->
-<th:block th:include="main/index-nav"></th:block>
-
-<!-- Page Header -->
-<header class="masthead" th:style="'background-image: url(../img/contact-bg.jpg)'">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="page-heading">
-                    <h1>Sing Up</h1>
-                    <span class="subheading">Input Your Information</span>
+    <!-- Page Header -->
+    <header class="masthead" th:style="'background-image: url(../img/contact-bg.jpg)'">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>Sing Up</h1>
+                        <span class="subheading">Input Your Information</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <form action="/members" method="post" class="needs-validation" novalidate="">
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted"></span></label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
-                </div>
-                <div class="mb-3">
-                    <label for="pw">Password</label>
-                    <input type="password" class="form-control" name="pw" id="pw" placeholder="passwd" required="">
-                </div>
-                <div class="mb-3">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="name" required="">
-                </div>
-                <div class="mb-3">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="phone">
-                </div>
-                <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" placeholder="address">
-                </div>
-                <hr class="mb-4">
-                <div class="text-center">
-                    <button class="btn btn-primary" type="submit">Sign Up</button>
-                </div>
-            </form>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-10 mx-auto">
+                <form action="/member" method="post" class="needs-validation" novalidate="">
+                    <!-- action -->
+                    <input type="hidden" class="form-control" name="action" value="up">
 
+                    <!-- id -->
+                    <div class="mb-4">
+                        <label for="id">id <span class="text-muted"></span></label>
+                        <input type="text" class="form-control" name="id" id="id" placeholder="your id">
+                    </div>
+
+                    <!-- pw -->
+                    <div class="mb-4">
+                        <label for="pw">Password</label>
+                        <input type="password" class="form-control" name="pw" id="pw" placeholder="passwd" required="">
+                    </div>
+
+                    <!-- name -->
+                    <div class="mb-4">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="name" required="">
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
 
-<hr>
-
-<!-- Footer -->
-<th:block th:include="main/index-footer"></th:block>
+    <hr>
+    <!-- Footer -->
+    <th:block th:include="/main/index-footer"></th:block>
 </body>
-
 </html>
 

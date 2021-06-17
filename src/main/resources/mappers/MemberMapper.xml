@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="iducs.springboot.a201712007.mapper.MemberMapper">
+
+        <select id="getMemberByNo" parameterType="_int" resultType="iducs.springboot.a201712007.domain.Member">
+            SELECT * FROM member where no = #{no}
+        </select>
+
+        <select id="getMemberById" parameterType="String" resultType="iducs.springboot.a201712007.domain.Member">
+            SELECT * FROM member where id = #{id}
+        </select>
+
+        <select id="checkMember" parameterType="iducs.springboot.a201712007.domain.Member" resultType="iducs.springboot.a201712007.domain.Member">
+            SELECT * FROM member WHERE id = #{id} AND pw = #{pw}
+        </select>
+
+        <insert id="registerMember" parameterType="iducs.springboot.a201712007.domain.Member">
+            INSERT INTO member (id, pw, name, reg_date) values(#{id}, #{pw}, #{name}, CURRENT_DATE())
+        </insert>
+
+        <select id="validateMemberById" resultType="_int">
+            SELECT COUNT(*) FROM member WHERE id = #{id}
+        </select>
+
+        <update id="updateMemberByNo" parameterType="iducs.springboot.a201712007.domain.Member">
+            UPDATE member SET pw=#{pw}, name=#{name} WHERE no=#{no}
+        </update>
+
+        <delete id="deleteMemberByNo" parameterType="_int">
+            DELETE FROM member where no = #{no}
+        </delete>
+
+
+
+
+</mapper>

@@ -2,6 +2,7 @@ package iducs.springboot.a201712007.repository;
 
 import iducs.springboot.a201712007.domain.Member;
 import iducs.springboot.a201712007.repository.MemberRepository;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
 
-//    private JdbcT
+    private SqlSession sqlSession;
+
 
     @Override
     public int create(Member member) {
@@ -24,10 +26,7 @@ public class MemberRepositoryImpl implements MemberRepository {
         return null;
     }
 
-    @Override
-    public List<Member> readMembers() {
-        return null;
-    }
+
 
     @Override
     public int update(Member member) {
@@ -37,5 +36,12 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public int delete(int id) {
         return 0;
+    }
+
+    @Override
+    public List<Member> readMembers() {
+        System.out.println("func readMembers in repository");
+        sqlSession.selectList("");
+        return null;
     }
 }
